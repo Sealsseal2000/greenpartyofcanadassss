@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зелёная партия Канады - Официальный информационный портал</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emeraldCustom: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            950: '#022c22',
+                        },
+                        partyGpc: '#10b981', // Зеленые
+                        partyNdp: '#f97316', // НДП - Оранжевый
+                        partyLpc: '#ef4444', // Либералы - Красный
+                        partyBloc: '#3b82f6', // Квебекский блок - Синий
+                        partyCpc: '#1e3a8a', // Консерваторы - Темно-синий
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+        .dark-glass {
+            background: rgba(6, 78, 59, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .compass-grid {
+            background-size: 20px 20px;
+            background-image: 
+                radial-gradient(circle, rgba(16, 185, 129, 0.15) 1px, transparent 1px);
+        }
+        .pulse-marker {
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-emerald-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 glass-card border-b border-emerald-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                        <i data-lucide="leaf" class="w-6 h-6"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors">Зелёная Партия</span>
+                        <span class="text-xs font-semibold text-emerald-600 tracking-wider uppercase">Канада / Green Party</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors">О партии</a>
+                    <a href="#compass" class="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+                        <i data-lucide="compass" class="w-4 h-4 text-emerald-600"></i>
+                        Политический компас
+                    </a>
+                    <a href="#comparison" class="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors">Сравнение партий</a>
+                    <a href="#quebec" class="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors">Квебек и регионы</a>
+                    <a href="#program" class="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors">Программа</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#compass" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm shadow-lg shadow-emerald-600/25 transition-all hover:shadow-emerald-600/40 hover:-translate-y-0.5">
+                        Их компас
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-xl text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">О партии</a>
+            <a href="#compass" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">Политический компас</a>
+            <a href="#comparison" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">Сравнение партий</a>
+            <a href="#quebec" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">Квебек и регионы</a>
+            <a href="#program" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">Программа</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-12 pb-24 md:pt-20 md:pb-32 bg-gradient-to-b from-emerald-900 via-emerald-800 to-slate-900 text-white">
+        <!-- Abstract Ecological Background Elements -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-emerald-400 blur-3xl"></div>
+            <div class="absolute top-1/2 right-0 w-80 h-80 rounded-full bg-teal-300 blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs sm:text-sm font-semibold tracking-wide">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                        Лево-либертарная политика будущего
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Зелёная Партия Канады: <br class="hidden sm:block">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-green-400">
+                            Устойчивость, Справедливость, Свобода
+                        </span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-emerald-100/90 font-light max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Они предлагают смелый экономический и экологический курс для Канады. На политических координатах они располагаемся в <strong class="text-white font-semibold">лево-либертарном спектре</strong> - прогрессивнее Либералов и сбалансированнее НДП.
+                    </p>
+
+                    <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#compass" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-base transition-all shadow-lg shadow-emerald-500/30 hover:scale-105">
+                            <i data-lucide="compass" class="w-5 h-5 mr-2"></i>
+                            Политические координаты
+                        </a>
+                        <a href="#about" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-base border border-white/20 transition-all backdrop-blur-sm">
+                            Узнать о принципах партии
+                        </a>
+                    </div>
+
+                    <!-- Quick Facts Grid -->
+                    <div class="pt-8 grid grid-cols-3 gap-4 border-t border-emerald-700/50">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-300">1983</div>
+                            <div class="text-xs sm:text-sm text-emerald-200/70">Год основания</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-300">Левые</div>
+                            <div class="text-xs sm:text-sm text-emerald-200/70">Экономический вектор</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-300">Либертарные</div>
+                            <div class="text-xs sm:text-sm text-emerald-200/70">Гражданские свободы</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                    <!-- Visual Card representing ideology -->
+                    <div class="w-full max-w-md dark-glass rounded-3xl p-6 sm:p-8 border border-emerald-500/30 shadow-2xl relative">
+                        <div class="absolute top-4 right-4 text-emerald-400/40">
+                            <i data-lucide="shield-check" class="w-12 h-12"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Наше место в Канаде</h3>
+                        <p class="text-sm text-emerald-200/80 mb-6">
+                            Как третья ключевая лево-либертарная партия Канады, они связывают экологическую безопасность с социальными правами человека.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-500/30 flex items-center justify-between">
+                                <span class="text-sm font-medium text-white">НДП (NDP)</span>
+                                <span class="text-xs px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Более Левые</span>
+                            </div>
+                            <div class="p-4 rounded-xl bg-emerald-600/40 border-2 border-emerald-400 flex items-center justify-between shadow-lg">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i>
+                                    <span class="text-base font-bold text-white">Зелёная Партия</span>
+                                </div>
+                                <span class="text-xs font-bold px-2.5 py-1 rounded bg-emerald-400 text-slate-950">Центр Лево-Либертарианства</span>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-500/30 flex items-center justify-between">
+                                <span class="text-sm font-medium text-white">Либералы (LPC)</span>
+                                <span class="text-xs px-2.5 py-1 rounded bg-red-500/20 text-red-300 border border-red-500/30">Правее Зелёных</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-2">Фундамент движения</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Базовые ценности Зеленой партии
+                </p>
+                <p class="mt-4 text-slate-600 text-lg">
+                    Зеленая партия Канады основана на глобальных принципах зелёной политики, направленных на гармонию человека, общества и природы.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Value 1 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-6">
+                        <i data-lucide="sprout" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Экологическая мудрость</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        Признание того, что люди являются частью природного мира. Люди должны защищать биоразнообразие и поддерживать природные системы, поддерживающие жизнь.
+                    </p>
+                </div>
+
+                <!-- Value 2 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-6">
+                        <i data-lucide="scale" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Социальная справедливость</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        Справедливое распределение ресурсов, искоренение бедности и гарантированный равный доступ к социальным благам, медицине и образованию для каждого гражданина.
+                    </p>
+                </div>
+
+                <!-- Value 3 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-6">
+                        <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Ненасилие</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        Отказ от военных конфликтов и насилия. Разрешение международных и внутренних споров исключительно мировыми, дипломатическими и диалоговыми методами.
+                    </p>
+                </div>
+
+                <!-- Value 4 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-6">
+                        <i data-lucide="recycle" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Устойчивое развитие</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        Переход к возобновляемой энергетике и циркулярной экономике. Потребление ресурсов не должно превышать способность планеты к их восстановлению.
+                    </p>
+                </div>
+
+                <!-- Value 5 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-6">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Уважение к разнообразию</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        Защита культурного, языкового и этнического многообразия Канады. Права коренных народов (First Nations, Inuit, Métis) и поддержка многоязычия.
+                    </p>
+                </div>
+
+                <!-- Value 6 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-6">
+                        <i data-lucide="globe-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Глобальная ответственность</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        Активное участие Канады в решении мировых климатических проблем, поддержка международных эко-соглашений и гуманитарная поддержка стран в зоне риска.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Political Compass Section -->
+    <section id="compass" class="py-20 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-3">Интерактивный анализ</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Политический компас канадских партий
+                </h2>
+                <p class="mt-4 text-slate-600 text-base sm:text-lg">
+                    Политическая система Канады включает разнообразный спектр сил. Нажимайте на партии, чтобы изучить их точные экономические и социальные позиции на координатной сетке.
+                </p>
+            </div>
+
+            <!-- Main Interactive Container -->
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Compass Grid Render Container (Left/Top) -->
+                <div class="lg:col-span-7 bg-slate-900 rounded-3xl p-4 sm:p-8 shadow-xl text-white relative">
+                    <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+                        <span class="text-xs uppercase font-semibold text-slate-400">Координатная сетка партий</span>
+                        <span class="text-xs text-emerald-400 flex items-center gap-1">
+                            <i data-lucide="info" class="w-3.5 h-3.5"></i> Кликните по маркеру партии
+                        </span>
+                    </div>
+
+                    <!-- The Political Compass Graphic Area -->
+                    <div class="relative w-full aspect-square max-w-[500px] mx-auto compass-grid border border-slate-700/80 rounded-2xl bg-slate-950/60 overflow-hidden select-none">
+                        
+                        <!-- Axis Lines -->
+                        <div class="absolute inset-x-0 top-1/2 h-0.5 bg-slate-600"></div> <!-- Horizontal Axis -->
+                        <div class="absolute inset-y-0 left-1/2 w-0.5 bg-slate-600"></div> <!-- Vertical Axis -->
+
+                        <!-- Quadrant Labels -->
+                        <div class="absolute top-3 left-3 text-[10px] sm:text-xs font-bold text-slate-400/80 bg-slate-900/80 px-2 py-1 rounded">
+                            Левые Авторитарные
+                        </div>
+                        <div class="absolute top-3 right-3 text-[10px] sm:text-xs font-bold text-slate-400/80 bg-slate-900/80 px-2 py-1 rounded">
+                            Правые Авторитарные
+                        </div>
+                        <div class="absolute bottom-3 left-3 text-[10px] sm:text-xs font-bold text-emerald-400/90 bg-emerald-950/90 border border-emerald-500/30 px-2 py-1 rounded">
+                            ★ Лево-Либертарные (Left-Libertarian)
+                        </div>
+                        <div class="absolute bottom-3 right-3 text-[10px] sm:text-xs font-bold text-slate-400/80 bg-slate-900/80 px-2 py-1 rounded">
+                            Правые Либертарные
+                        </div>
+
+                        <!-- Axis Direction Labels -->
+                        <div class="absolute top-1 left-1/2 -translate-x-1/2 text-[10px] font-extrabold uppercase text-slate-400 bg-slate-900/90 px-2 py-0.5 rounded border border-slate-700">
+                            Авторитаризм
+                        </div>
+                        <div class="absolute bottom-1 left-1/2 -translate-x-1/2 text-[10px] font-extrabold uppercase text-emerald-400 bg-slate-900/90 px-2 py-0.5 rounded border border-emerald-800">
+                            Либертарианство / Свободы
+                        </div>
+                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-[10px] font-extrabold uppercase text-slate-400 bg-slate-900/90 px-2 py-0.5 rounded border border-slate-700 -rotate-90 origin-left">
+                            Левые (Экономика)
+                        </div>
+                        <div class="absolute right-1 top-1/2 -translate-y-1/2 text-[10px] font-extrabold uppercase text-slate-400 bg-slate-900/90 px-2 py-0.5 rounded border border-slate-700 rotate-90 origin-right">
+                            Правые (Экономика)
+                        </div>
+
+                        <!-- Party Markers on Compass -->
+                        
+                        <!-- 1. Green Party (Left-Libertarian, middle between NDP and LPC) -->
+                        <button id="marker-gpc" onclick="selectParty('gpc')" 
+                                class="absolute transform -translate-x-1/2 -translate-y-1/2 z-30 group focus:outline-none transition-all duration-300"
+                                style="left: 33%; top: 68%;">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-500 text-slate-950 font-bold flex items-center justify-center border-2 border-white shadow-xl group-hover:scale-125 pulse-marker">
+                                <i data-lucide="leaf" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                            </div>
+                            <span class="absolute top-full mt-1 left-1/2 -translate-x-1/2 text-[11px] font-extrabold bg-emerald-900/90 text-emerald-200 border border-emerald-400/50 px-2 py-0.5 rounded whitespace-nowrap shadow">
+                                Зелёная Партия
+                            </span>
+                        </button>
+
+                        <!-- 2. NDP (More Left than Greens, Left-Libertarian) -->
+                        <button id="marker-ndp" onclick="selectParty('ndp')" 
+                                class="absolute transform -translate-x-1/2 -translate-y-1/2 z-20 group focus:outline-none transition-all duration-300"
+                                style="left: 20%; top: 62%;">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center border-2 border-white shadow-lg group-hover:scale-125">
+                                <span class="text-xs font-black">НДП</span>
+                            </div>
+                            <span class="absolute top-full mt-1 left-1/2 -translate-x-1/2 text-[10px] font-semibold bg-slate-900/90 text-orange-300 border border-orange-500/30 px-1.5 py-0.5 rounded whitespace-nowrap">
+                                НДП (NDP)
+                            </span>
+                        </button>
+
+                        <!-- 3. LPC / Liberals (Right of Greens, Left-Libertarian quadrant) -->
+                        <button id="marker-lpc" onclick="selectParty('lpc')" 
+                                class="absolute transform -translate-x-1/2 -translate-y-1/2 z-20 group focus:outline-none transition-all duration-300"
+                                style="left: 44%; top: 58%;">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-red-600 text-white font-bold flex items-center justify-center border-2 border-white shadow-lg group-hover:scale-125">
+                                <span class="text-xs font-black">LPC</span>
+                            </div>
+                            <span class="absolute top-full mt-1 left-1/2 -translate-x-1/2 text-[10px] font-semibold bg-slate-900/90 text-red-300 border border-red-500/30 px-1.5 py-0.5 rounded whitespace-nowrap">
+                                Либералы
+                            </span>
+                        </button>
+
+                        <!-- 4. Bloc Québécois (Left-center / Regionalist) -->
+                        <button id="marker-bloc" onclick="selectParty('bloc')" 
+                                class="absolute transform -translate-x-1/2 -translate-y-1/2 z-20 group focus:outline-none transition-all duration-300"
+                                style="left: 36%; top: 44%;">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-500 text-white font-bold flex items-center justify-center border-2 border-white shadow-lg group-hover:scale-125">
+                                <span class="text-xs font-black">BQ</span>
+                            </div>
+                            <span class="absolute top-full mt-1 left-1/2 -translate-x-1/2 text-[10px] font-semibold bg-slate-900/90 text-blue-300 border border-blue-500/30 px-1.5 py-0.5 rounded whitespace-nowrap">
+                                Квебекский блок
+                            </span>
+                        </button>
+
+                        <!-- 5. Conservative Party (Right-Authoritarian/Centrist Right) -->
+                        <button id="marker-cpc" onclick="selectParty('cpc')" 
+                                class="absolute transform -translate-x-1/2 -translate-y-1/2 z-20 group focus:outline-none transition-all duration-300"
+                                style="left: 78%; top: 35%;">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-900 text-white font-bold flex items-center justify-center border-2 border-white shadow-lg group-hover:scale-125">
+                                <span class="text-xs font-black">CPC</span>
+                            </div>
+                            <span class="absolute top-full mt-1 left-1/2 -translate-x-1/2 text-[10px] font-semibold bg-slate-900/90 text-blue-200 border border-blue-800 px-1.5 py-0.5 rounded whitespace-nowrap">
+                                Консерваторы
+                            </span>
+                        </button>
+
+                    </div>
+
+                    <!-- Compass Legend Footer -->
+                    <div class="mt-6 flex flex-wrap justify-center gap-2 text-xs">
+                        <button onclick="selectParty('gpc')" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30">Зеленая Партия</button>
+                        <button onclick="selectParty('ndp')" class="px-3 py-1.5 rounded-lg bg-orange-500/20 text-orange-300 border border-orange-500/40 hover:bg-orange-500/30">НДП</button>
+                        <button onclick="selectParty('lpc')" class="px-3 py-1.5 rounded-lg bg-red-500/20 text-red-300 border border-red-500/40 hover:bg-red-500/30">Либералы</button>
+                        <button onclick="selectParty('bloc')" class="px-3 py-1.5 rounded-lg bg-blue-500/20 text-blue-300 border border-blue-500/40 hover:bg-blue-500/30">Квебекский Блок</button>
+                        <button onclick="selectParty('cpc')" class="px-3 py-1.5 rounded-lg bg-indigo-900/40 text-blue-200 border border-indigo-700/50 hover:bg-indigo-900/60">Консерваторы</button>
+                    </div>
+                </div>
+
+                <!-- Selected Party Details Display Card (Right/Bottom) -->
+                <div class="lg:col-span-5 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md transition-all min-h-[500px] flex flex-col justify-between">
+                    <div id="party-details">
+                        <!-- Dynamic details injected by JavaScript -->
+                    </div>
+
+                    <!-- Note on Left-Libertarian Alliance -->
+                    <div class="mt-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-slate-700">
+                        <div class="font-bold text-emerald-900 flex items-center gap-1.5 mb-1">
+                            <i data-lucide="compass" class="w-4 h-4 text-emerald-600"></i>
+                            Важная особенность канадского спектра:
+                        </div>
+                        Все три прогрессивные партии — <strong>НДП, Зелёные и Либералы</strong> — находятся в <em>лево-либертарном квадранте</em>. При этом Зелёная партия занимает особое место: она находится <strong>левее Либералов</strong> (требуя более решительных социально-экологических мер) и <strong>правее НДП</strong> (предлагая сбалансированные экономические механизмы).
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Party Comparison Section -->
+    <section id="comparison" class="py-20 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-2">Анализ политического поля</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Сравнительный анализ партий Канады
+                </p>
+                <p class="mt-4 text-slate-600 text-base">
+                    Как принципы Зелёной партии соотносятся с программами других ведущих канадских партий?
+                </p>
+            </div>
+
+            <!-- Comparison Table Container -->
+            <div class="overflow-x-auto bg-white rounded-2xl shadow-sm border border-slate-200">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900 text-white text-sm">
+                            <th class="p-4 sm:p-5 font-bold border-b border-slate-800">Партия</th>
+                            <th class="p-4 sm:p-5 font-bold border-b border-slate-800">Квадрант</th>
+                            <th class="p-4 sm:p-5 font-bold border-b border-slate-800">Экологический курс</th>
+                            <th class="p-4 sm:p-5 font-bold border-b border-slate-800">Экономическая модель</th>
+                            <th class="p-4 sm:p-5 font-bold border-b border-slate-800">Социальная политика</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-xs sm:text-sm">
+                        <!-- Green Party -->
+                        <tr class="bg-emerald-50/60 font-medium">
+                            <td class="p-4 sm:p-5">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                                    <span class="font-bold text-emerald-950">Зелёная Партия</span>
+                                </div>
+                            </td>
+                            <td class="p-4 sm:p-5 text-emerald-800 font-semibold">Лево-либертарный</td>
+                            <td class="p-4 sm:p-5">Полный отказ от ископаемого топлива, защита экосистем.</td>
+                            <td class="p-4 sm:p-5">Прогрессивная эко-экономика, зеленые рабочие места.</td>
+                            <td class="p-4 sm:p-5">Гарантированный базовый доход, всеобщая медицина.</td>
+                        </tr>
+
+                        <!-- NDP -->
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-4 sm:p-5">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-orange-500"></div>
+                                    <span class="font-bold text-slate-900">НДП (NDP)</span>
+                                </div>
+                            </td>
+                            <td class="p-4 sm:p-5 text-slate-700">Лево-либертарный (Более левее Зелёных)</td>
+                            <td class="p-4 sm:p-5">Активная эко-программа, фокус на профсоюзах в энергетике.</td>
+                            <td class="p-4 sm:p-5">Демократический социализм, высокие налоги для корпораций.</td>
+                            <td class="p-4 sm:p-5">Бесплатная стоматология и лекарства, сильные профсоюзы.</td>
+                        </tr>
+
+                        <!-- Liberal Party -->
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-4 sm:p-5">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <span class="font-bold text-slate-900">Либералы (LPC)</span>
+                                </div>
+                            </td>
+                            <td class="p-4 sm:p-5 text-slate-700">Лево-либертарный (Умереннее/Правее Зелёных)</td>
+                            <td class="p-4 sm:p-5">Углеродный налог при одновременной поддержке трубопроводов.</td>
+                            <td class="p-4 sm:p-5">Социал-либерализм, смешанная рыночная экономика.</td>
+                            <td class="p-4 sm:p-5">Инклюзивные программы, поддержка среднего класса.</td>
+                        </tr>
+
+                        <!-- Bloc Québécois -->
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-4 sm:p-5">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                                    <span class="font-bold text-slate-900">Квебекский Блок</span>
+                                </div>
+                            </td>
+                            <td class="p-4 sm:p-5 text-slate-700">Лево-центристский / Региональный</td>
+                            <td class="p-4 sm:p-5">Против трубопроводов на территории Квебека.</td>
+                            <td class="p-4 sm:p-5">Защита экономических интересов провинции Квебек.</td>
+                            <td class="p-4 sm:p-5">Защита французского языка и светскости Квебека.</td>
+                        </tr>
+
+                        <!-- Conservative Party -->
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-4 sm:p-5">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-blue-900"></div>
+                                    <span class="font-bold text-slate-900">Консерваторы (CPC)</span>
+                                </div>
+                            </td>
+                            <td class="p-4 sm:p-5 text-slate-700">Право-центристский / Право-авторитарный</td>
+                            <td class="p-4 sm:p-5">Отмена углеродного налога, поддержка нефтяной отрасли.</td>
+                            <td class="p-4 sm:p-5">Свободный рынок, снижение налогов и дерeгулирование.</td>
+                            <td class="p-4 sm:p-5">Традиционные ценности, жесткий закон и порядок.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quebec Regional Context & Provincial Focus Section -->
+    <section id="quebec" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i> Региональный контекст
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        Квебекский контекст и работа в провинциях
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        Политический ландшафт Канады невозможно представить без учета провинции Квебек. В Квебеке ключевую роль играет <strong>Квебекский блок (Bloc Québécois)</strong>, отстаивающий национальные и эко-социальные интересы франкоязычного населения.
+                    </p>
+                    <p class="text-slate-600 leading-relaxed">
+                        Зеленая партия Канады тесно взаимодействует с провинциальными зелёными движениями (включая <em>Parti vert du Québec</em>). Мы признаем самобытность Квебека, поддерживаем защиту гидроэнергетики провинции и выступаем против строительства транзитных нефтепроводов через квебекские земли.
+                    </p>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start gap-3">
+                            <div class="p-2 rounded-lg bg-emerald-100 text-emerald-700 mt-1">
+                                <i data-lucide="shield" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Защита экосистем Квебека</h4>
+                                <p class="text-xs text-slate-600">Совместное противодействие расширению трубопроводов и защита реки Святого Лаврентия.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="p-2 rounded-lg bg-emerald-100 text-emerald-700 mt-1">
+                                <i data-lucide="languages" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Уважение к франкофонной культуре</h4>
+                                <p class="text-xs text-slate-600">Поддержка двуязычия и культурной автономии провинции в рамках зеленой федеральной программы.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="bg-gradient-to-br from-slate-900 to-emerald-950 p-8 rounded-3xl text-white shadow-xl relative overflow-hidden">
+                        <div class="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-blue-500/10 blur-2xl"></div>
+                        
+                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                            <i data-lucide="compass" class="w-6 h-6 text-blue-400"></i>
+                            Соотношение силы в Квебеке
+                        </h3>
+                        <p class="text-sm text-slate-300 mb-6 leading-relaxed">
+                            В Квебеке Зеленые и Квебекский блок часто находят общий язык по вопросам экологии, однако Зеленая партия делает акцент на общеканадском зеленом курсе и правах коренных народов.
+                        </p>
+
+                        <div class="space-y-4">
+                            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-bold text-blue-300">Квебекский блок</span>
+                                    <span class="text-xs bg-blue-900/60 text-blue-200 px-2 py-0.5 rounded">Региональный Фокус</span>
+                                </div>
+                                <p class="text-xs text-slate-400">Социал-демократическая риторика с акцентом на интересы провинции.</p>
+                            </div>
+
+                            <div class="bg-emerald-900/60 p-4 rounded-xl border border-emerald-500/40">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-bold text-emerald-300">Зеленая Партия Канады</span>
+                                    <span class="text-xs bg-emerald-800/80 text-emerald-100 px-2 py-0.5 rounded">Экологический глобализм</span>
+                                </div>
+                                <p class="text-xs text-emerald-200/80">Лево-либертарная платформа с упором на всеобщую климатическую справедливость.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Program Initiatives Section -->
+    <section id="program" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2">План действий</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    Ключевые пункты предвыборной программы
+                </h2>
+                <p class="mt-4 text-slate-300 text-base">
+                    Конкретные шаги по трансформированию экономики и общества Канады
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Program 1 -->
+                <div class="bg-slate-800/90 p-6 rounded-2xl border border-slate-700 hover:border-emerald-500/50 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
+                        <i data-lucide="zap" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">100% Переход на ВИЭ к 2030 годам</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Полное прекращение субсидирования нефтегазового сектора и перенаправление миллиардных инвестиций в солнечную, ветровую и гидроэнергетику.
+                    </p>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="bg-slate-800/90 p-6 rounded-2xl border border-slate-700 hover:border-emerald-500/50 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
+                        <i data-lucide="wallet" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Гарантированный Доход (GLI)</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Внедрение гарантированного жизненного дохода для ликвидации бедности по всей Канаде и обеспечения социальной защищенности каждого человека.
+                    </p>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="bg-slate-800/90 p-6 rounded-2xl border border-slate-700 hover:border-emerald-500/50 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
+                        <i data-lucide="stetho-scope" class="w-5 h-5" style="display:none"></i>
+                        <i data-lucide="heart-pulse" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Расширение Medicare</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Включение стоматологических услуг, ухода за зрением и рецептурных лекарств в систему бесплатного канадского государственного здравоохранения.
+                    </p>
+                </div>
+
+                <!-- Program 4 -->
+                <div class="bg-slate-800/90 p-6 rounded-2xl border border-slate-700 hover:border-emerald-500/50 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
+                        <i data-lucide="tree-pine" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Защита Древних Лесов</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Запрет на вырубку старовозрастных лесов Британской Колумбии и восстановление естественных природных заповедников по всей стране.
+                    </p>
+                </div>
+
+                <!-- Program 5 -->
+                <div class="bg-slate-800/90 p-6 rounded-2xl border border-slate-700 hover:border-emerald-500/50 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
+                        <i data-lucide="home" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Эко-жильё и Доступность</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Строительство массового доступного и энергоэффективного жилья с нулевым уровнем выбросов для молодых семей и студентов.
+                    </p>
+                </div>
+
+                <!-- Program 6 -->
+                <div class="bg-slate-800/90 p-6 rounded-2xl border border-slate-700 hover:border-emerald-500/50 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
+                        <i data-lucide="vote" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Реформа Избирательной Системы</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Переход от мажоритарной системы к пропорциональному представлению, чтобы голоса всех граждан отражались в Парламенте.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="space-y-4 md:col-span-2">
+                    <div class="flex items-center gap-2 text-white font-bold text-lg">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-slate-950">
+                            <i data-lucide="leaf" class="w-5 h-5"></i>
+                        </div>
+                        Зеленая партия Канады
+                    </div>
+                    <p class="text-xs text-slate-400 max-w-md leading-relaxed">
+                        Информационный портал, посвященный идеологии, программам и политическому компасу Green Party of Canada. Прогрессивное будущее для экологии и каждого гражданина.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Быстрый переход</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#about" class="hover:text-emerald-400 transition-colors">О партии</a></li>
+                        <li><a href="#compass" class="hover:text-emerald-400 transition-colors">Политический компас</a></li>
+                        <li><a href="#comparison" class="hover:text-emerald-400 transition-colors">Сравнение партий</a></li>
+                        <li><a href="#quebec" class="hover:text-emerald-400 transition-colors">Квебекский контекст</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Канадский Парламент</h4>
+                    <p class="text-xs text-slate-400">
+                        Оттава, Онтарио, Канада.<br>
+                        Green Party of Canada / Parti vert du Canada
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p>© Green Party of Canada Info Portal. Все права защищены.</p>
+                <p>Разработано для наглядного анализа канадской политической системы.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Dynamic Interactions -->
+    <script>
+        // Parties Information Data Object
+        const partyData = {
+            gpc: {
+                name: 'Зелёная партия Канады (Green Party of Canada)',
+                quadrant: 'Лево-либертарный (Left-Libertarian)',
+                color: '#10b981',
+                badgeBg: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                position: 'Находится ЛЕВЕЕ Либералов и ПРАВЕЕ НДП',
+                econSummary: 'Прогрессивно-экологическая экономика, поддержка зеленых рабочих мест, инвестиции в ВИЭ, гарантированный доход.',
+                socialSummary: 'Сильная защита прав человека, личные свободы, равные возможности, акцент на правах коренных народов.',
+                details: 'Зелёная партия располагается в лево-либертарном квадранте политического компаса. В канадском контексте она находится левее Либералов (требуя более кардинальных эко-социальных реформ) и правее НДП (предлагая сбалансированное сочетание рыночных эко-стимулов и государственной поддержки). Партия объединяет экологическую заботу с глубоким уважением к личной свободе.'
+            },
+            ndp: {
+                name: 'Новая демократическая партия (NDP)',
+                quadrant: 'Лево-либертарный (Left-Libertarian)',
+                color: '#f97316',
+                badgeBg: 'bg-orange-100 text-orange-800 border-orange-300',
+                position: 'Находитcя ЛЕВЕЕ Зелёной партии',
+                econSummary: 'Демократический социализм, перераспределение доходов, повышение налогов на корпорации, защита профсоюзов.',
+                socialSummary: 'Расширение социальных программ (стоматология, фармакеар), поддержка профсоюзных прав и рабочих.',
+                details: 'НДП — самая левая из трех лево-либертарных партий Канады. Она занимает позицию левее Зеленой партии, делая упор на классическую социал-демократию, рабочее движение, сильное государственное регулирование экономики и налогообложение крупного капитала.'
+            },
+            lpc: {
+                name: 'Либеральная партия Канады (Liberal Party)',
+                quadrant: 'Лево-либертарный (Left-Libertarian)',
+                color: '#ef4444',
+                badgeBg: 'bg-red-100 text-red-800 border-red-300',
+                position: 'Находится ПРАВЕЕ Зелёной партии',
+                econSummary: 'Центристский социал-либерализм, рыночная экономика с государственным регулированием, углеродный налог.',
+                socialSummary: 'Прогрессивная социальная политика, поддержка многообразия, инклюзивность и защита прав меньшинств.',
+                details: 'Либеральная партия также относится к лево-либертарному квадранту, однако она располагается правее Зелёных и НДП. Либералы сочетают рыночно-ориентированную экономику с социальными программами поддержки среднего класса.'
+            },
+            bloc: {
+                name: 'Квебекский блок (Bloc Québécois)',
+                quadrant: 'Лево-центристский / Региональный',
+                color: '#3b82f6',
+                badgeBg: 'bg-blue-100 text-blue-800 border-blue-300',
+                position: 'Региональная партия провинции Квебек',
+                econSummary: 'Социал-демократия с региональным уклоном, защита местных производителей Квебека.',
+                socialSummary: 'Защита французского языка, культуры, светского характера государства и прав жителей Квебека.',
+                details: 'Квебекский блок действует исключительно на федеральном уровне от провинции Квебек. Партия занимает лево-центристские позиции и часто выступает партнером или оппонентом зеленых инициатив в зависимости от интересов Квебека.'
+            },
+            cpc: {
+                name: 'Консервативная партия Канады (Conservative Party)',
+                quadrant: 'Право-центристский / Право-авторитарный',
+                color: '#1e3a8a',
+                badgeBg: 'bg-indigo-100 text-indigo-900 border-indigo-300',
+                position: 'Правый фланг канадской политики',
+                econSummary: 'Свободный рынок, снижение налогов, сокращение госрасходов, поддержка нефтегазовой отрасли.',
+                socialSummary: 'Традиционные ценности, поддержка правопорядка, фискальный консерватизм.',
+                details: 'Главная правая сила Канады. Консерваторы находятся в противоположном (право-центристском/авторитарном) спектре по отношению к Зелёной партии, НДП и Либералам, выступая за отмену углеродного налога и поддержку традиционной энергетики.'
+            }
+        };
+
+        // Function to update Selected Party Info Box
+        function selectParty(partyKey) {
+            const data = partyData[partyKey];
+            const detailsContainer = document.getElementById('party-details');
+
+            if (!data) return;
+
+            // HTML Structure for Party Details
+            detailsContainer.innerHTML = `
+                <div class="space-y-4 animate-fade-in">
+                    <div class="flex items-center justify-between flex-wrap gap-2">
+                        <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border ${data.badgeBg}">
+                            ${data.quadrant}
+                        </span>
+                        <span class="text-xs font-semibold text-slate-500">
+                            ${data.position}
+                        </span>
+                    </div>
+
+                    <h3 class="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded-full inline-block" style="background-color: ${data.color}"></span>
+                        ${data.name}
+                    </h3>
+
+                    <p class="text-sm text-slate-700 leading-relaxed bg-white p-4 rounded-xl border border-slate-200/80 shadow-sm">
+                        ${data.details}
+                    </p>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200">
+                            <div class="text-xs font-bold uppercase text-slate-500 mb-1 flex items-center gap-1">
+                                <i data-lucide="trending-up" class="w-3.5 h-3.5 text-emerald-600"></i> Экономические взгляды
+                            </div>
+                            <div class="text-xs text-slate-800">${data.econSummary}</div>
+                        </div>
+
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200">
+                            <div class="text-xs font-bold uppercase text-slate-500 mb-1 flex items-center gap-1">
+                                <i data-lucide="users" class="w-3.5 h-3.5 text-emerald-600"></i> Социальная политика
+                            </div>
+                            <div class="text-xs text-slate-800">${data.socialSummary}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Highlight Marker with Animation
+            document.querySelectorAll('[id^="marker-"]').forEach(btn => {
+                btn.classList.remove('scale-125', 'z-40');
+            });
+            const activeMarker = document.getElementById(`marker-${partyKey}`);
+            if (activeMarker) {
+                activeMarker.classList.add('scale-125', 'z-40');
+            }
+
+            // Re-initialize Lucide Icons for dynamic content
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        // Initialize Page Default State
+        window.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide Icons
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+
+            // Default Select Green Party
+            selectParty('gpc');
+
+            // Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
